@@ -72,5 +72,7 @@ func errorHandler(w http.ResponseWriter,err error,status int)  {
 		Message:           err.Error(),
 		Data:              nil,
 	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(status)
 	json.NewEncoder(w).Encode(errResponse)
 }

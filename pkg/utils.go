@@ -11,14 +11,9 @@ import (
 	"strconv"
 )
 
-const (
-	filePath = "pkg/bank.csv"
-)
-func init() {
-	//reading data from thr csv file
-	BankDetails=CsvReader()
-}
-func CsvReader() []PersonalDetails {
+
+
+func CsvReader(filePath string) []PersonalDetails {
 	desc, err := os.Open(filePath)
 	if err != nil {
 		log.Fatal(err)
@@ -58,11 +53,8 @@ func CsvReader() []PersonalDetails {
 		person.Previous, _ = strconv.ParseInt(line[14], 10, 64)
 		person.POutcome = line[15]
 		person.Y = line[16]
-
 		bankDetails = append(bankDetails, person)
 	}
-	//bankJson, _ := json.Marshal(bankDetails)
-	//fmt.Println(string(peopleJson))
 	return bankDetails
 }
 func errorHandler(w http.ResponseWriter,err error,status int)  {

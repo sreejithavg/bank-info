@@ -1,8 +1,7 @@
 package main
 
 import (
-	"Bank/pkg"
-	_ "Bank/pkg"
+	"bankInfo/pkg"
 	"context"
 	"github.com/gorilla/mux"
 	"log"
@@ -12,12 +11,13 @@ import (
 	"syscall"
 	"time"
 )
-
+const (
+	filePath = "bank.csv"
+)
 func main() {
+	pkg.BankDetails=pkg.CsvReader(filePath)
 	router := mux.NewRouter()
-	router.HandleFunc("/user/non_cellular", pkg.NonCellularUser).Methods("GET")
-	router.HandleFunc("/user/get",pkg.UserHandler).Methods("GET")
-	router.HandleFunc("/user/filter",pkg.UserFilterHandler).Methods("POST")
+	pkg.InitRouter(router)
 	log.Println("server running")
 	server := &http.Server{
 		Addr:    ":8080",

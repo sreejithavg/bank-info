@@ -4,16 +4,17 @@ bank-info is a go library for dealing with bank users.Processing the bank user i
 based on the requested conditions.
   
   
-            go version : go1.13.4
+        go version : go1.13.4
 
-
+##  RUN
+        go run main.go
 ### API
 
-api available in the library
+api available in the library.[refer api_doc]
 
 ```bash
-1. GET METHOD : "/user/non_cellular"
-2. GET METHOD : "/user/get"
-3. POST METHOD: "/user/filter"
+    1. GET METHOD : "/user/non_cellular"
+    2. GET METHOD : "/user/get"
+    3. POST METHOD: "/user/filter"
 ```
 

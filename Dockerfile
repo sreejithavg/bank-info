@@ -5,7 +5,7 @@ FROM golang:1.13.4
 LABEL maintainer="Sreejitha V G <sreejithavg001@gmail.com>"
 
 # Set the Current Working Directory inside the container
-WORKDIR $GOPATH/src/bankInfo
+WORKDIR $GOPATH/src/bank-info
 
 # Copy go mod and sum files
 COPY go.mod go.sum ./

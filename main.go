@@ -19,6 +19,7 @@ func main() {
 	//reading data from csv file
 	pkg.CsvReader(filePath)
 
+	// initializing router
 	router := pkg.InitRouter()
 
 	log.Println("server running")

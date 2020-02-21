@@ -1,6 +1,6 @@
 **Get all users after 15th october **
 ----
-    Get all  user after 15th october
+    Get all  users information and count falls after 15th october
 
   
 * **URL**

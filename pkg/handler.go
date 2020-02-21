@@ -18,7 +18,8 @@ func InitRouter() *mux.Router {
 	return router
 }
 
-// will return the number of non-cellular users
+// handler function  will return the count of non-cellular users
+
 func nonCellularUser(w http.ResponseWriter, r *http.Request) {
 	var recordCount int
 	for _, bankInfo := range BankDetails {
@@ -42,7 +43,7 @@ func nonCellularUser(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
-// will return users info after the october 15 th
+// handler function will return users info after the october 15th
 func userHandler(w http.ResponseWriter, r *http.Request) {
 	var bankDetails []PersonalDetails
 	for _, bankInfo := range BankDetails {
@@ -72,7 +73,7 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//return the no of user records satisfy the request conditions
+//handler function will find the records counts falls under specific age group and martial status
 func userFilterHandler(w http.ResponseWriter, r *http.Request) {
 	var request Request
 	var record int

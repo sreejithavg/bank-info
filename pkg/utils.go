@@ -11,9 +11,10 @@ import (
 	"strconv"
 )
 
+func init() {
+}
 
-
-func CsvReader(filePath string) []PersonalDetails {
+func CsvReader(filePath string) {
 	desc, err := os.Open(filePath)
 	if err != nil {
 		log.Fatal(err)
@@ -55,10 +56,9 @@ func CsvReader(filePath string) []PersonalDetails {
 		person.Y = line[16]
 		bankDetails = append(bankDetails, person)
 	}
-	return bankDetails
 }
-func errorHandler(w http.ResponseWriter,err error,status int)  {
-	errResponse:=Response{
+func errorHandler(w http.ResponseWriter, err error, status int) {
+	errResponse := Response{
 		StatusCode:        status,
 		StatusDescription: "failed",
 		Message:           err.Error(),
@@ -67,4 +67,15 @@ func errorHandler(w http.ResponseWriter,err error,status int)  {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
 	json.NewEncoder(w).Encode(errResponse)
+}
+func noHandler(w http.ResponseWriter, r *http.Request) {
+	noResponse := Response{
+		StatusCode:        http.StatusNotFound,
+		StatusDescription: "failed",
+		Message:           "invalid request ",
+		Data:              nil,
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusNotFound)
+	json.NewEncoder(w).Encode(noResponse)
 }

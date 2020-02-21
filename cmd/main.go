@@ -10,13 +10,17 @@ import (
 	"syscall"
 	"time"
 )
+
 const (
 	filePath = "bank.csv"
 )
-func main() {
-	pkg.BankDetails=pkg.CsvReader(filePath)
 
-	router:=pkg.InitRouter()
+func main() {
+	//reading data from csv file
+	pkg.CsvReader(filePath)
+
+	router := pkg.InitRouter()
+
 	log.Println("server running")
 	server := &http.Server{
 		Addr:    ":8080",

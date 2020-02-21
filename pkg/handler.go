@@ -8,11 +8,13 @@ import (
 	"net/http"
 )
 
-func InitRouter()  *mux.Router {
-	router:=mux.NewRouter()
+func InitRouter() *mux.Router {
+
+	router := mux.NewRouter()
 	router.HandleFunc("/user/non_cellular", nonCellularUser).Methods("GET")
-	router.HandleFunc("/user/get",userHandler).Methods("GET")
-	router.HandleFunc("/user/filter",userFilterHandler).Methods("POST")
+	router.HandleFunc("/user/get", userHandler).Methods("GET")
+	router.HandleFunc("/user/filter", userFilterHandler).Methods("POST")
+	router.NotFoundHandler = http.HandlerFunc(noHandler)
 	return router
 }
 
@@ -80,14 +82,14 @@ func userFilterHandler(w http.ResponseWriter, r *http.Request) {
 		errorHandler(w, err, http.StatusBadRequest)
 		return
 	}
-	validate :=validator.New()
-	err=validate.Struct(request)
+	validate := validator.New()
+	err = validate.Struct(request)
 	if err != nil {
 		log.Println("Bad request validation failed")
 		errorHandler(w, err, http.StatusBadRequest)
 		return
 	}
-	err=validate.VarWithValue(request.EndAge, request.StartAge, "gtfield")
+	err = validate.VarWithValue(request.EndAge, request.StartAge, "gtfield")
 	if err != nil {
 		log.Println("Bad request validation failed")
 		errorHandler(w, err, http.StatusBadRequest)

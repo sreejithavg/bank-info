@@ -8,11 +8,12 @@ import (
 	"net/http"
 )
 
-func InitRouter(router *mux.Router)  {
-
+func InitRouter()  *mux.Router {
+	router:=mux.NewRouter()
 	router.HandleFunc("/user/non_cellular", nonCellularUser).Methods("GET")
 	router.HandleFunc("/user/get",userHandler).Methods("GET")
 	router.HandleFunc("/user/filter",userFilterHandler).Methods("POST")
+	return router
 }
 
 // will return the number of non-cellular users

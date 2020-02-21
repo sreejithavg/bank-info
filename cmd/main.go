@@ -3,7 +3,6 @@ package main
 import (
 	"bankInfo/pkg"
 	"context"
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"os"
@@ -16,8 +15,8 @@ const (
 )
 func main() {
 	pkg.BankDetails=pkg.CsvReader(filePath)
-	router := mux.NewRouter()
-	pkg.InitRouter(router)
+
+	router:=pkg.InitRouter()
 	log.Println("server running")
 	server := &http.Server{
 		Addr:    ":8080",
